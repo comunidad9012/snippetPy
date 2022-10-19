@@ -1,18 +1,18 @@
-#import the module
+#Importo el modulo que conecta con Mysql
 import mysql.connector
 
 
 def listar(cur):
     #Ejecuto query SELECT  
     cur.execute("SELECT * FROM clientes")
-    #Fetch all records from table
-    res = cur.fetchall()
+    #Busco todos los registros de la tabla
+    resultado = cur.fetchall()
     #print
     print("------------------------------------------------------------------------")
     print("ID Nombre        Nacimiento     Direccion   Localidad   Telefono")
     print("------------------------------------------------------------------------")
           
-    for x in res:
+    for x in resultado:
         print(str(x[0])+"  "+x[1]+"  "+x[2]+"  "+x[5]+"  "+x[3]+"  "+x[4])
     print("------------------------------------------------------------------------") 
 
@@ -31,7 +31,7 @@ def alta(con,cur):
     ##Ejecuto query de Inserción  
     sql = "INSERT INTO clientes (nombre_cliente, fecha_nacimiento, direccion, localidad, telefono, email, fecha_alta, grupo_clientes) VALUES (%s, %s,%s, %s,%s, %s, %s, %s)"    #create list of values typed from user to insert in customer table
     valores = (cnom,cnac,cdir,cloc,ctel,cem,cal,cgr)
-    #Execute query with values
+    #Ejecuto query con valores ingresados
     cur.execute(sql, valores)
     #commit for permanent storage in database
     con.commit()
